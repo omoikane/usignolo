@@ -1,11 +1,12 @@
 <?php
 
 /**
- * Questo file è parte di usignolo.
+ * This file is part of Usignolo.
  *
- * @author    Daniele De Nobili
- * @copyright Web Agency Meta Line S.r.l.
- * @package   ???
+ * (c) Daniele De Nobili <danieledenobili@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Usignolo\Bundle\UsignoloBundle\Tests;
