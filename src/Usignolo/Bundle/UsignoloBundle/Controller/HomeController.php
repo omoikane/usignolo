@@ -16,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 // these import the "@Route" and "@Template" annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 use Usignolo\Bundle\UsignoloBundle\Entity\Issue;
 
 class HomeController extends Controller
@@ -24,18 +25,29 @@ class HomeController extends Controller
      * @Route("/", name="_home")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('UsignoloBundle:Issue');
 
         $issues = $repository->findAll();
 
-        $form = $this->createFormBuilder(new Issue())
+        $issue = new Issue();
+
+        $form = $this->createFormBuilder($issue)
             ->add('title', 'text')
             ->add('description', 'textarea')
             ->add('save', 'submit')
             ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em->persist($issue);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('_welcome'));
+        }
 
         return array(
             'issues' => $issues,
