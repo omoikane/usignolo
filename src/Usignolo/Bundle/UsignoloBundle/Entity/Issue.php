@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This file is part of Usignolo.
+ *
+ * (c) Daniele De Nobili <danieledenobili@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Usignolo\Bundle\UsignoloBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -39,7 +48,7 @@ class Issue
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -55,14 +64,14 @@ class Issue
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -78,14 +87,14 @@ class Issue
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
