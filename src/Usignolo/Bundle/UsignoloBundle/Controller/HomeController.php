@@ -16,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 // these import the "@Route" and "@Template" annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Usignolo\Bundle\UsignoloBundle\Entity\Issue;
 
 class HomeController extends Controller
 {
@@ -30,8 +31,15 @@ class HomeController extends Controller
 
         $issues = $repository->findAll();
 
+        $form = $this->createFormBuilder(new Issue())
+            ->add('title', 'text')
+            ->add('description', 'textarea')
+            ->add('save', 'submit')
+            ->getForm();
+
         return array(
             'issues' => $issues,
+            'form' => $form->createView(),
         );
     }
 }
