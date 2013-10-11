@@ -12,12 +12,12 @@
 namespace Usignolo\Bundle\UsignoloBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Usignolo\Bundle\UsignoloBundle\Entity\Issue;
 
 // these import the "@Route" and "@Template" annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Usignolo\Bundle\UsignoloBundle\Entity\Issue;
 
 class HomeController extends Controller
 {
