@@ -25,6 +25,13 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        return array();
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('UsignoloBundle:Issue');
+
+        $issues = $repository->findAll();
+
+        return array(
+            'issues' => $issues,
+        );
     }
 }

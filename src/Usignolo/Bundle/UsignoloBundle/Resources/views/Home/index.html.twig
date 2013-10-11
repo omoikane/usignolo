@@ -1,2 +1,7 @@
 <h1>Usignolo</h1>
-<p>It works!</p>
+
+<ul>
+    {% for issue in issues %}
+    <li>{{ issue.title }}</li>
+    {% endfor %}
+</ul>
