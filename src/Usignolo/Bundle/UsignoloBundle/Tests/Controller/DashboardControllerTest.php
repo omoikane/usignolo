@@ -13,7 +13,7 @@ namespace Usignolo\Bundle\UsignoloBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class HomeControllerTest extends WebTestCase
+class DashboardControllerTest extends WebTestCase
 {
     public function testIndex()
     {

@@ -25,7 +25,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  *
  * @author Daniele De Nobili <danieledenobili@gmail.com>
  */
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Index action.
