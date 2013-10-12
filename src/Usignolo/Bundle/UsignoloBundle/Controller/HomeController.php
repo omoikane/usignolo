@@ -14,6 +14,7 @@ namespace Usignolo\Bundle\UsignoloBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Usignolo\Bundle\UsignoloBundle\Entity\Issue;
+use Usignolo\Bundle\UsignoloBundle\Form\Type\IssueType;
 
 // these import the "@Route" and "@Template" annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -34,11 +35,7 @@ class HomeController extends Controller
 
         $issue = new Issue();
 
-        $form = $this->createFormBuilder($issue)
-            ->add('title', 'text')
-            ->add('description', 'textarea', array('required' => false))
-            ->add('save', 'submit')
-            ->getForm();
+        $form = $this->createForm(new IssueType(), $issue);
 
         $form->handleRequest($request);
 
