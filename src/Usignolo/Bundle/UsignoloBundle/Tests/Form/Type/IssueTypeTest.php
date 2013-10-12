@@ -1,5 +1,6 @@
 <?php
-/**
+
+/*
  * This file is part of Usignolo.
  *
  * (c) Daniele De Nobili <danieledenobili@gmail.com>

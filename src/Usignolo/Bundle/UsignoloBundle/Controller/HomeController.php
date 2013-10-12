@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of Usignolo.
  *
  * (c) Daniele De Nobili <danieledenobili@gmail.com>
@@ -20,9 +20,19 @@ use Usignolo\Bundle\UsignoloBundle\Form\Type\IssueType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+/**
+ * Home controller.
+ *
+ * @author Daniele De Nobili <danieledenobili@gmail.com>
+ */
 class HomeController extends Controller
 {
     /**
+     * Index action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request The HTTP Request.
+     * @return array
+     *
      * @Route("/", name="_home")
      * @Template()
      */

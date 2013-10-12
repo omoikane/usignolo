@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of Usignolo.
  *
  * (c) Daniele De Nobili <danieledenobili@gmail.com>
@@ -13,6 +13,11 @@ namespace Usignolo\Bundle\UsignoloBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
+/**
+ * UsignoloBundle.
+ *
+ * @author Daniele De Nobili <danieledenobili@gmail.com>
+ */
 class UsignoloBundle extends Bundle
 {
 }

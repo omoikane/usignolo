@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of Usignolo.
  *
  * (c) Daniele De Nobili <danieledenobili@gmail.com>
@@ -15,7 +15,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Issue
+ * Issue entity.
+ *
+ * @author Daniele De Nobili <danieledenobili@gmail.com>
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Usignolo\Bundle\UsignoloBundle\Entity\IssueRepository")
@@ -23,6 +25,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Issue
 {
     /**
+     * Issue identifier.
+     *
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -32,6 +36,8 @@ class Issue
     private $id;
 
     /**
+     * Issue title.
+     *
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
@@ -40,6 +46,8 @@ class Issue
     private $title = '';
 
     /**
+     * Issue description.
+     *
      * @var string
      *
      * @ORM\Column(name="description", type="text")
@@ -49,7 +57,7 @@ class Issue
 
 
     /**
-     * Get id
+     * Get identifier.
      *
      * @return integer
      */
@@ -59,7 +67,7 @@ class Issue
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
      * @return Issue
@@ -72,7 +80,7 @@ class Issue
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -82,7 +90,7 @@ class Issue
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
      * @return Issue
@@ -95,7 +103,7 @@ class Issue
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */

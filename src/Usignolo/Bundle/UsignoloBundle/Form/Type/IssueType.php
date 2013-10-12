@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of Usignolo.
  *
  * (c) Daniele De Nobili <danieledenobili@gmail.com>
@@ -16,6 +16,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * IssueType.
+ *
+ * @author Daniele De Nobili <danieledenobili@gmail.com>
  */
 class IssueType extends AbstractType
 {

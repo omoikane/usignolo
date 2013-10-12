@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of Usignolo.
  *
  * (c) Daniele De Nobili <danieledenobili@gmail.com>
@@ -14,7 +14,9 @@ namespace Usignolo\Bundle\UsignoloBundle\Entity;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * IssueRepository
+ * IssueRepository.
+ *
+ * @author Daniele De Nobili <danieledenobili@gmail.com>
  */
 class IssueRepository extends EntityRepository
 {
