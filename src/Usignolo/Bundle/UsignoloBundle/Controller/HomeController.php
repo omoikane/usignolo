@@ -36,7 +36,7 @@ class HomeController extends Controller
 
         $form = $this->createFormBuilder($issue)
             ->add('title', 'text')
-            ->add('description', 'textarea')
+            ->add('description', 'textarea', array('required' => false))
             ->add('save', 'submit')
             ->getForm();
 

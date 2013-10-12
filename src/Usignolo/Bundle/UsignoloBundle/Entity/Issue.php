@@ -12,6 +12,7 @@
 namespace Usignolo\Bundle\UsignoloBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Issue
@@ -34,15 +35,17 @@ class Issue
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank()
      */
-    private $title;
+    private $title = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Assert\NotNull()
      */
-    private $description;
+    private $description = '';
 
 
     /**
@@ -63,7 +66,7 @@ class Issue
      */
     public function setTitle($title)
     {
-        $this->title = $title;
+        $this->title = (string) $title;
 
         return $this;
     }
@@ -86,7 +89,7 @@ class Issue
      */
     public function setDescription($description)
     {
-        $this->description = $description;
+        $this->description = (string) $description;
 
         return $this;
     }
