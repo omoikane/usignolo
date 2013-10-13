@@ -1,9 +1,13 @@
-<h1>Usignolo</h1>
+{% extends "TwigBundle::layout.html.twig" %}
 
-<ul id="issues-list">
-    {% for issue in issues %}
-    <li>{{ issue.title }}</li>
-    {% endfor %}
-</ul>
+{% block body %}
+    <h1>Usignolo</h1>
 
-{{ form(form) }}
+    <ul id="issues-list">
+        {% for issue in issues %}
+        <li>{{ issue.title }}</li>
+        {% endfor %}
+    </ul>
+
+    {{ form(form) }}
+{% endblock %}
