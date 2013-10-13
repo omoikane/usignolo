@@ -33,7 +33,7 @@ class DashboardController extends Controller
      * @param \Symfony\Component\HttpFoundation\Request $request The HTTP Request.
      * @return array
      *
-     * @Route("/", name="_home")
+     * @Route("/")
      * @Template()
      */
     public function indexAction(Request $request)
@@ -51,7 +51,7 @@ class DashboardController extends Controller
             $em->persist($issue);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('_welcome'));
+            return $this->redirect($this->generateUrl('usignolo_usignolo_dashboard_index'));
         }
 
         $repository = $em->getRepository('UsignoloBundle:Issue');

@@ -1,0 +1,3 @@
+# Usignolo
+_usignolo:
+    resource: "@UsignoloBundle/Resources/config/routing.yml"

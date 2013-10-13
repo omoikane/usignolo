@@ -12,7 +12,3 @@ _configurator:
 
 _main:
     resource: routing.yml
-
-# Usignolo
-_usignolo:
-    resource: "@UsignoloBundle/Resources/config/routing.yml"
