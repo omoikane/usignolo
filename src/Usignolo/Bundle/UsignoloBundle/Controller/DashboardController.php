@@ -38,10 +38,8 @@ class DashboardController extends Controller
      */
     public function indexAction(Request $request)
     {
+        /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('UsignoloBundle:Issue');
-
-        $issues = $repository->findAll();
 
         $issue = new Issue();
 
@@ -55,6 +53,9 @@ class DashboardController extends Controller
 
             return $this->redirect($this->generateUrl('_welcome'));
         }
+
+        $repository = $em->getRepository('UsignoloBundle:Issue');
+        $issues = $repository->findAll();
 
         return array(
             'issues' => $issues,
