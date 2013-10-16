@@ -19,25 +19,17 @@
                 <td>{{ entity.title }}</td>
                 <td>{{ entity.description }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('issue_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('issue_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                    <ul>
+                        <li><a href="{{ path('issue_show', { 'id': entity.id }) }}">show</a></li>
+                        <li><a href="{{ path('issue_edit', { 'id': entity.id }) }}">edit</a></li>
+                    </ul>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('issue_new') }}">
-                Create a new entry
-            </a>
-        </li>
+    <ul>
+        <li><a href="{{ path('issue_new') }}">Create a new entry</a></li>
     </ul>
 {% endblock %}
