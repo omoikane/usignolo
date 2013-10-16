@@ -23,23 +23,4 @@ class DashboardControllerTest extends WebTestCase
 
         $this->assertTrue($client->getResponse()->isOk(), 'The home page response must be "OK".');
     }
-
-    public function testSubmitIssueForm()
-    {
-        $client = static::createClient();
-        $client->followRedirects();
-
-        $crawler = $client->request('GET', '/');
-
-        $issues_count = $crawler->filter('#issues-list li')->count();
-
-        $form = $crawler->selectButton('issue_save')->form();
-
-        $form['issue[title]'] = 'A simple title';
-        $form['issue[description]'] = 'A simple description';
-
-        $crawler = $client->submit($form);
-
-        $this->assertEquals($issues_count + 1, $crawler->filter('#issues-list li')->count());
-    }
 }
