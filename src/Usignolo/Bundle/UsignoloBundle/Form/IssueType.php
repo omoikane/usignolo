@@ -15,11 +15,15 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * IssueType.
+ *
+ * @author Daniele De Nobili <danieledenobili@gmail.com>
+ */
 class IssueType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -30,7 +34,7 @@ class IssueType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * {@inheritdoc}
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
@@ -40,7 +44,7 @@ class IssueType extends AbstractType
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {
