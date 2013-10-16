@@ -26,7 +26,7 @@ class DashboardController extends Controller
     /**
      * Index action.
      *
-     * @Route("/")
+     * @Route("/", name="dashboard")
      * @Template()
      */
     public function indexAction()

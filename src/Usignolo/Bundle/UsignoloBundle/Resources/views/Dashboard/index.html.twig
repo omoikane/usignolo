@@ -1,15 +1,18 @@
-{% extends "::base.html.twig" %}
+{% extends "UsignoloBundle::layout.html.twig" %}
 
-{% block body %}
-    <h1>Usignolo</h1>
+{% block content %}
+    <section>
+        <h2>Dashboard</h2>
 
-    <ul id="issues-list">
-        {% for issue in issues %}
-        <li>{{ issue.title }}</li>
-        {% endfor %}
-    </ul>
+        <ul id="issues-list">
+            {% for issue in issues %}
+                <li>{{ issue.title }}</li>
+            {% endfor %}
+        </ul>
 
-    <ul>
-        <li><a href="{{ path('issue_new') }}">Create a new entry</a></li>
-    </ul>
+        <ul>
+            <li><a href="{{ path('issue_new') }}">Create a new entry</a></li>
+            <li><a href="{{ path('issue') }}">View all</a></li>
+        </ul>
+    </section>
 {% endblock %}

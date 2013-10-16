@@ -1,12 +1,14 @@
-{% extends '::base.html.twig' %}
+{% extends "UsignoloBundle::layout.html.twig" %}
 
-{% block body -%}
-    <h1>Issue edit</h1>
+{% block content %}
+    <section>
+        <h2>Issue edit</h2>
 
-    {{ form(edit_form) }}
+        {{ form(edit_form) }}
 
-    <ul class="record_actions">
-        <li><a href="{{ path('issue') }}">Back to the list</a></li>
-        <li>{{ form(delete_form) }}</li>
-    </ul>
+        <ul class="record_actions">
+            <li><a href="{{ path('issue') }}">Back to the list</a></li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>
+    </section>
 {% endblock %}

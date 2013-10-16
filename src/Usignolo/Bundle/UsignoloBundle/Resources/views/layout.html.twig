@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Usignolo</h1>
+
+    <nav>
+        <ul>
+            <li><a href="{{ path('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ path('issue') }}">Issues</a></li>
+        </ul>
+    </nav>
+
+    {% block content %}{% endblock %}
+{% endblock %}
