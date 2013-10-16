@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Usignolo\Bundle\UsignoloBundle\Tests\Form\Type;
+namespace Usignolo\Bundle\UsignoloBundle\Tests\Form;
 
 use Symfony\Component\Form\Test\TypeTestCase;
 use Usignolo\Bundle\UsignoloBundle\Entity\Issue;
-use Usignolo\Bundle\UsignoloBundle\Form\Type\IssueType;
+use Usignolo\Bundle\UsignoloBundle\Form\IssueType;
 
 class IssueTypeTest extends TypeTestCase
 {
