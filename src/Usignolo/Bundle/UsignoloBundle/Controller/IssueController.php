@@ -74,25 +74,6 @@ class IssueController extends Controller
     }
 
     /**
-    * Creates a form to create a Issue entity.
-    *
-    * @param Issue $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createCreateForm(Issue $entity)
-    {
-        $form = $this->createForm(new IssueType(), $entity, array(
-            'action' => $this->generateUrl('issue_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }
-
-    /**
      * Displays a form to create a new Issue entity.
      *
      * @Route("/new", name="issue_new")
@@ -163,25 +144,6 @@ class IssueController extends Controller
     }
 
     /**
-    * Creates a form to edit a Issue entity.
-    *
-    * @param Issue $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Issue $entity)
-    {
-        $form = $this->createForm(new IssueType(), $entity, array(
-            'action' => $this->generateUrl('issue_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
-
-    /**
      * Edits an existing Issue entity.
      *
      * @Route("/{id}", name="issue_update")
@@ -239,6 +201,44 @@ class IssueController extends Controller
         }
 
         return $this->redirect($this->generateUrl('issue'));
+    }
+
+    /**
+    * Creates a form to create a Issue entity.
+    *
+    * @param Issue $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createCreateForm(Issue $entity)
+    {
+        $form = $this->createForm(new IssueType(), $entity, array(
+            'action' => $this->generateUrl('issue_create'),
+            'method' => 'POST',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Create'));
+
+        return $form;
+    }
+
+    /**
+    * Creates a form to edit a Issue entity.
+    *
+    * @param Issue $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditForm(Issue $entity)
+    {
+        $form = $this->createForm(new IssueType(), $entity, array(
+            'action' => $this->generateUrl('issue_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Update'));
+
+        return $form;
     }
 
     /**
