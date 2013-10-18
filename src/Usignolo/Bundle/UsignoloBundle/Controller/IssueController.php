@@ -98,17 +98,9 @@ class IssueController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction(Issue $entity)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('UsignoloBundle:Issue')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Issue entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($entity->getId());
 
         return array(
             'entity'      => $entity,
@@ -123,18 +115,10 @@ class IssueController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction(Issue $entity)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('UsignoloBundle:Issue')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Issue entity.');
-        }
-
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($entity->getId());
 
         return array(
             'entity'      => $entity,
@@ -150,24 +134,17 @@ class IssueController extends Controller
      * @Method("PUT")
      * @Template("UsignoloBundle:Issue:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, Issue $entity)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('UsignoloBundle:Issue')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Issue entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($entity->getId());
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            return $this->redirect($this->generateUrl('issue_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('issue_edit', array('id' => $entity->getId())));
         }
 
         return array(
