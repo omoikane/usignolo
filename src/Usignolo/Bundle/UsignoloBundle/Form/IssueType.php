@@ -30,6 +30,7 @@ class IssueType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
+            ->add('complete', null, array('required' => false))
         ;
     }
 

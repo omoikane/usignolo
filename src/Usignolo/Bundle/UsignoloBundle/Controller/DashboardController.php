@@ -35,7 +35,7 @@ class DashboardController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $repository = $em->getRepository('UsignoloBundle:Issue');
-        $issues = $repository->findAll();
+        $issues = $repository->findBy(array('complete' => false));
 
         return array(
             'issues' => $issues,

@@ -55,6 +55,37 @@ class Issue
      */
     private $description = '';
 
+    /**
+     * Issue complete flag.
+     *
+     * @var bool
+     *
+     * @ORM\Column(name="is_complete", type="boolean")
+     */
+    private $complete = false;
+
+    /**
+     * Set complete.
+     *
+     * @param boolean $complete
+     * @return $this
+     */
+    public function setComplete($complete)
+    {
+        $this->complete = (bool) $complete;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether the issue is completed.
+     *
+     * @return boolean
+     */
+    public function isComplete()
+    {
+        return $this->complete;
+    }
 
     /**
      * Get identifier.

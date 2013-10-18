@@ -47,6 +47,14 @@ class IssueControllerTest extends WebTestCase
             'Missing element td:contains("Test")'
         );
 
+        // Check dashboard
+        $dashboard = $client->request('GET', '/');
+        $this->assertGreaterThan(
+            0,
+            $dashboard->filter('li:contains("Test")')->count(),
+            'Missing element li:contains("Test") in dashboard'
+        );
+
         // Edit the entity
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
@@ -54,6 +62,7 @@ class IssueControllerTest extends WebTestCase
             array(
                 'usignolo_issue[title]'       => 'Edited',
                 'usignolo_issue[description]' => 'Edited Foo Bar',
+                'usignolo_issue[complete]'    => true,
             )
         );
 
@@ -61,7 +70,25 @@ class IssueControllerTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         // Check the element contains an attribute with value equals "Foo"
-        $this->assertGreaterThan(0, $crawler->filter('[name="usignolo_issue[title]"]')->count(), 'Missing element [name="usignolo_issue[title]"]');
+        $field_title = $crawler->filter('[name="usignolo_issue[title]"]');
+        $this->assertGreaterThan(0, $field_title->count(), 'Missing element [name="usignolo_issue[title]"]');
+        $this->assertEquals('Edited', $field_title->attr('value'), 'Element [name="usignolo_issue[title]"] is not updated');
+
+        $field_description = $crawler->filter('[name="usignolo_issue[description]"]');
+        $this->assertGreaterThan(0, $field_description->count(), 'Missing element [name="usignolo_issue[description]"]');
+        $this->assertEquals('Edited Foo Bar', $field_description->html(), 'Element [name="usignolo_issue[description]"] is not updated');
+
+        $field_complete = $crawler->filter('[name="usignolo_issue[complete]"]');
+        $this->assertGreaterThan(0, $field_complete->count(), 'Missing element [name="usignolo_issue[complete]"]');
+        $this->assertEquals('checked', $field_complete->attr('checked'), 'Element [name="usignolo_issue[complete]"] is not updated');
+
+        // Check dashboard
+        $dashboard = $client->request('GET', '/');
+        $this->assertEquals(
+            0,
+            $dashboard->filter('li:contains("Test")')->count(),
+            'Found element li:contains("Test") (should be complete) in dashboard'
+        );
 
         // Delete the entity
         $client->submit($crawler->selectButton('Delete')->form());
