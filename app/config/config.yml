@@ -20,6 +20,8 @@ framework:
     session:         ~
     fragments:       ~
     http_method_override: true
+    session:
+        name: "usignolo"
 
 # Twig Configuration
 twig:
