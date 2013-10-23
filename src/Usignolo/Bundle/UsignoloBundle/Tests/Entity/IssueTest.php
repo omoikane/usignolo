@@ -32,4 +32,16 @@ class IssueTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('<p>And there is a description too.</p>', $issue->getDescription());
     }
+
+    public function testComplete()
+    {
+        $issue = new Issue();
+        $this->assertFalse($issue->isComplete());
+
+        $issue->setComplete();
+        $this->assertTrue($issue->isComplete());
+
+        $issue->setComplete(false);
+        $this->assertFalse($issue->isComplete());
+    }
 }

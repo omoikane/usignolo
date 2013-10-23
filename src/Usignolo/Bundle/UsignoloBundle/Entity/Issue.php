@@ -70,7 +70,7 @@ class Issue
      * @param boolean $complete
      * @return $this
      */
-    public function setComplete($complete)
+    public function setComplete($complete = true)
     {
         $this->complete = (bool) $complete;
 

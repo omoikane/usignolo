@@ -18,12 +18,17 @@
                     <th>Description</th>
                     <td>{{ entity.description }}</td>
                 </tr>
+                <tr>
+                    <th>Complete</th>
+                    <td>{% if entity.complete %}Yes{% else %}No{% endif %}</td>
+                </tr>
             </tbody>
         </table>
 
         <ul class="record_actions">
             <li><a href="{{ path('issue') }}">Back to the list</a></li>
             <li><a href="{{ path('issue_edit', { 'id': entity.id }) }}">Edit</a></li>
+            {% if not entity.complete %}<li>{{ form(complete_form) }}</li>{% endif %}
             <li>{{ form(delete_form) }}</li>
         </ul>
     </section>

@@ -19,6 +19,7 @@ class IssueControllerTest extends WebTestCase
     {
         // Create a new client to browse the application
         $client = static::createClient();
+        $dashboardClient = static::createClient();
 
         // Create a new entry in the database
         $crawler = $client->request('GET', '/issue/');
@@ -48,11 +49,21 @@ class IssueControllerTest extends WebTestCase
         );
 
         // Check dashboard
-        $dashboard = $client->request('GET', '/');
+        $dashboard = $dashboardClient->request('GET', '/');
         $this->assertGreaterThan(
             0,
             $dashboard->filter('li:contains("Test")')->count(),
             'Missing element li:contains("Test") in dashboard'
+        );
+
+        // Complete the issue
+        $client->submit($crawler->selectButton('Complete')->form());
+        $crawler = $client->followRedirect();
+
+        $this->assertGreaterThan(
+            0,
+            $crawler->filter('th:contains("Complete")')->parents()->filter('td:contains("Yes")')->count(),
+            'Missing element td:contains("Yes") near element th:contains("Complete")'
         );
 
         // Edit the entity

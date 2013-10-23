@@ -100,11 +100,13 @@ class IssueController extends Controller
      */
     public function showAction(Issue $entity)
     {
+        $completeForm = $this->createCompleteForm($entity->getId());
         $deleteForm = $this->createDeleteForm($entity->getId());
 
         return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+            'entity'        => $entity,
+            'complete_form' => $completeForm->createView(),
+            'delete_form'   => $deleteForm->createView(),
         );
     }
 
@@ -118,12 +120,14 @@ class IssueController extends Controller
     public function editAction(Issue $entity)
     {
         $editForm = $this->createEditForm($entity);
+        $completeForm = $this->createCompleteForm($entity->getId());
         $deleteForm = $this->createDeleteForm($entity->getId());
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'entity'        => $entity,
+            'edit_form'     => $editForm->createView(),
+            'complete_form' => $completeForm->createView(),
+            'delete_form'   => $deleteForm->createView(),
         );
     }
 
@@ -136,6 +140,7 @@ class IssueController extends Controller
      */
     public function updateAction(Request $request, Issue $entity)
     {
+        $completeForm = $this->createCompleteForm($entity->getId());
         $deleteForm = $this->createDeleteForm($entity->getId());
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
@@ -148,10 +153,33 @@ class IssueController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'entity'        => $entity,
+            'edit_form'     => $editForm->createView(),
+            'complete_form' => $completeForm->createView(),
+            'delete_form'   => $deleteForm->createView(),
         );
+    }
+
+    /**
+     * Complete an issue.
+     *
+     * @Route("/complete/{id}", name="issue_complete")
+     * @Method("PUT")
+     */
+    public function completeAction(Request $request, Issue $entity)
+    {
+        $form = $this->createCompleteForm($entity->getId());
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $entity->setComplete();
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('issue_show', array('id' => $entity->getId())));
+        }
+
+        return $this->redirect($this->generateUrl('issue_edit', array('id' => $entity->getId())));
     }
 
     /**
@@ -216,6 +244,22 @@ class IssueController extends Controller
         $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
+    }
+
+    /**
+     * Creates a form to complete an Issue entity by id.
+     *
+     * @param mixed $id The entity id
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createCompleteForm($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('issue_complete', array('id' => $id)))
+            ->setMethod('PUT')
+            ->add('submit', 'submit', array('label' => 'Complete'))
+            ->getForm()
+        ;
     }
 
     /**
