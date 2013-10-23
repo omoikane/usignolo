@@ -30,6 +30,19 @@ class IssueControllerTest extends WebTestCase
         );
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
+        // Submit the form without fill it
+        $form = $crawler->selectButton('Create')->form();
+        $crawler = $client->submit($form);
+
+        $field = $crawler->filter('#usignolo_issue_title');
+        $error_messages = $field->siblings()->filter('li');
+
+        $this->assertEquals(
+            1,
+            $error_messages->count(),
+            'Missing error after create'
+        );
+
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(
             array(
@@ -66,9 +79,28 @@ class IssueControllerTest extends WebTestCase
             'Missing element td:contains("Yes") near element th:contains("Complete")'
         );
 
-        // Edit the entity
+        // Edit the entity...
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
+        // ...with wrong data...
+        $form = $crawler->selectButton('Update')->form(
+            array(
+                'usignolo_issue[title]'       => '',
+                'usignolo_issue[description]' => 'Empty title',
+            )
+        );
+        $crawler = $client->submit($form);
+
+        $field = $crawler->filter('#usignolo_issue_title');
+        $error_messages = $field->siblings()->filter('li');
+
+        $this->assertEquals(
+            1,
+            $error_messages->count(),
+            'Missing error after update'
+        );
+
+        // ...and with good data!
         $form = $crawler->selectButton('Update')->form(
             array(
                 'usignolo_issue[title]'       => 'Edited',
